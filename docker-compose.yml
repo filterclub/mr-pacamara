@@ -10,3 +10,4 @@ services:
       - TOKEN=DISCORD_REDBOT_TOKEN_PLACEHOLDER
       - TZ=Europe/Budapest
       - PUID=1000
+      - EXTRA_ARGS="--mentionable"
