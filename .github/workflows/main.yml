@@ -25,7 +25,7 @@ jobs:
             StrictHostKeyChecking no
           END
       - name: Stop service
-        run: ssh server 'mkdir -p ~/mr-pacamara/ && cd ~/mr-pacamara/ && docker-compose down -v'
+        run: ssh server 'if [ docker-compose top | grep redbot ]; then cd ~/mr-pacamara/ && docker-compose down -v; fi'
       - name: Copy files over to server
         run: scp -prq ${{ github.workspace }} server:~/
       - name: Start service
