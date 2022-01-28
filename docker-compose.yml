@@ -9,4 +9,3 @@ services:
     environment:
       - TOKEN=DISCORD_REDBOT_TOKEN_PLACEHOLDER
       - TZ=Europe/Budapest
-      - PUID=1000
