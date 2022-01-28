@@ -1,0 +1,30 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare Redbot config file
+        run: |
+          sed -i -- 's/DISCORD_REDBOT_TOKEN_PLACEHOLDER/${{ secrets.DISCORD_REDBOT_TOKEN }}/g' ${{ github.workspace }}/docker-compose.yml
+      - name: Remove .git from repo directory
+        run: rm -rf ${{ github.workspace }}/.git
+      - name: Configure SSH to server
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SERVER_PRIVATE_KEY }}" > ~/.ssh/server.key
+          chmod 600 ~/.ssh/server.key
+          cat >>~/.ssh/config <<END
+          Host server
+            User ${{ secrets.SERVER_USER }}
+            HostName ${{ secrets.SERVER_HOST }}
+            Port ${{ secrets.SERVER_PORT }}
+            IdentityFile ~/.ssh/server.key
+            StrictHostKeyChecking no
+          END
+      - name: Copy files over to server
+        run: scp -prq ${{ github.workspace }} server:~/
+      - name: Start service
+        run: ssh server 'cd ~/mr-pacamara/ && docker-compose up -d'
