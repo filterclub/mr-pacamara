@@ -30,6 +30,6 @@ jobs:
       - name: Stop service
         run: ssh server 'if [ /srv/@filterclub/mr-pacamara/docker-compose top | grep redbot ]; then /srv/@filterclub/mr-pacamara/docker-compose down -v; fi'
       - name: Copy files over to server
-        run: scp -prq ${{ github.workspace }} server:/srv/@filterclub/
+        run: scp -prq ${{ github.workspace }} server:/srv/@filterclub
       - name: Start service
         run: ssh server 'cd /srv/@filterclub/mr-pacamara/ && docker-compose up -d'
