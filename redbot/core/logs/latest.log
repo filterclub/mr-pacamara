@@ -1,8 +1,0 @@
-[2022-01-28 14:16:48] [INFO] red: Loading packages...
-[2022-01-28 14:16:49] [WARNING] red.downloader: A remote URL does not exist for repo cbd-cogs
-[2022-01-28 14:16:49] [WARNING] red.downloader: A remote URL does not exist for repo ob13-cogs
-[2022-01-28 14:16:49] [INFO] red: Loaded packages: Tube, downloader, rss, emojitools, admin
-[2022-01-28 14:16:49] [INFO] red: Connected to Discord. Getting ready...
-[2022-01-28 14:16:53] [WARNING] py.warnings: /data/cogs/Downloader/lib/feedparser/util.py:95: DeprecationWarning: To avoid breaking existing software while fixing issue 310, a temporary mapping has been created from `updated_parsed` to `published_parsed` if `updated_parsed` doesn't exist. This fallback will be removed in a future version of feedparser.
-  warnings.warn(
-

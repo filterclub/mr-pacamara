@@ -6,9 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Prepare Redbot config file
+      - name: Prepare Redbot config files
         run: |
           sed -i -- 's/DISCORD_REDBOT_TOKEN_PLACEHOLDER/${{ secrets.DISCORD_REDBOT_TOKEN }}/g' ${{ github.workspace }}/docker-compose.yml
+      - name: Prepare Redbot config files
+        run: |
+          sed -i -- 's/DISCORD_REDBOT_TOKEN_PLACEHOLDER/${{ secrets.DISCORD_REDBOT_TOKEN }}/g' ${{ github.workspace }}/redbot/core/settings.json
       - name: Remove .git from repo directory
         run: rm -rf ${{ github.workspace }}/.git
       - name: Configure SSH to server
